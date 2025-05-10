@@ -6,6 +6,9 @@ import pathlib
 import numpy as np
 from openai import OpenAI
 
+# Set page config harus di awal
+st.set_page_config(page_title="📰 Chatbot Interaktif Harian Kompas", layout="centered")
+
 # Custom CSS untuk styling
 st.markdown("""
     <style>
@@ -190,9 +193,6 @@ def retrieve(query: str, records, embeddings, norms, k: int = 3) -> list[dict]:
     ]
     top_idxs = np.argsort(scores)[-k:][::-1]
     return [records[i] for i in top_idxs]
-
-# ── Streamlit UI ───────────────────────────────────────────────────────────────
-st.set_page_config(page_title="📰 Chatbot Interaktif Harian Kompas", layout="centered")
 
 # Header dengan gradient
 st.markdown('<div class="gradient-header">', unsafe_allow_html=True)
